@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Color Mixing Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="addition">
+
+    <div class="container">
+        <div class="header">
+            <h1>Color Mixing Lab</h1>
+        </div>
+
+        <div class="controls">
+            <div class="mode-toggle">
+                <button id="modeAdd" class="toggle-btn active" onclick="switchMode('addition')">Light (Additive)</button>
+                <button id="modeSub" class="toggle-btn" onclick="switchMode('subtraction')">Pigment (Subtractive)</button>
+            </div>
+            
+            <div id="palette" class="color-palette">
+                <!-- Palette items will be injected here by JS -->
+            </div>
+        </div>
+
+        <div class="venn-container">
+            <svg id="canvas" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle id="fillA" cx="35" cy="40" r="25" fill="#ff0000" onmousedown="startDrag(event)" ontouchstart="startDrag(event)" />
+                <circle id="fillB" cx="65" cy="40" r="25" fill="#00ff00" onmousedown="startDrag(event)" ontouchstart="startDrag(event)" />
+                <circle id="fillC" cx="50" cy="65" r="25" fill="#0000ff" onmousedown="startDrag(event)" ontouchstart="startDrag(event)" />
+            </svg>
+        </div>
+
+        <div class="info">
+            <h3 id="modeTitle">Additive Mixing</h3>
+            <p id="modeDesc">Simulates how colored light sources combine. The primary colors are Red, Green, and Blue. Combining all three results in White.</p>
+            <div id="centerHex" class="hex-display">Center: #FFFFFF</div>
+            <div class="hint">Tip: Drag the circles to see how they mix!</div>
+        </div>
+
+        <div class="description-section">
+            <div id="desc-addition" class="desc-card">
+                <h4>Applications of Additive Color (RGB)</h4>
+                <p>Additive mixing occurs when <b>emitted light</b> from different sources is combined. The more light you add, the brighter the result becomes.</p>
+                <ul>
+                    <li><b>Digital Screens:</b> Your phone, laptop, and TV use tiny Red, Green, and Blue pixels to create every color you see.</li>
+                    <li><b>Stage Lighting:</b> Concerts and theaters use RGB spotlights to wash the stage in different hues or create pure white light.</li>
+                    <li><b>Projectors:</b> Digital projectors mix light beams to display images on a screen.</li>
+                    <li><b>Vision:</b> Human eyes have receptors (cones) specifically tuned to Red, Green, and Blue wavelengths.</li>
+                </ul>
+            </div>
+            <div id="desc-subtraction" class="desc-card">
+                <h4>Applications of Subtractive Color (CMY)</h4>
+                <p>Subtractive mixing occurs when <b>pigments or filters</b> absorb (subtract) specific wavelengths of light and reflect others back to your eyes.</p>
+                <ul>
+                    <li><b>Color Printing:</b> Printers use Cyan, Magenta, and Yellow (CMYK) inks. Each ink "subtracts" its opposite color from white paper.</li>
+                    <li><b>Painting:</b> Artists mix physical pigments. Adding more colors absorbs more light, eventually resulting in dark muddy tones or black.</li>
+                    <li><b>Photography:</b> Traditional film uses layers of dyes to filter light and produce a colored image.</li>
+                    <li><b>Textiles:</b> Dyeing clothes involves applying pigments that subtract light to give the fabric its specific color.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

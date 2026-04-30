@@ -1,0 +1,64 @@
+COLOR MIXING LAB: INSTRUCTIONS & TECHNICAL GUIDE
+================================================
+
+This project is an interactive educational tool designed to demonstrate the two fundamental models of color theory: Additive (Light) and Subtractive (Pigment).
+
+---
+
+1. HOW TO USE THE LAB (STEP-BY-STEP)
+------------------------------------
+
+Step 1: Select a Mode
+Click the "Light (Additive)" or "Pigment (Subtractive)" button at the top. This changes the entire environment, including the background color, the primary colors of the circles, and the educational description.
+
+Step 2: Interact with Circles
+Click and drag any of the three circles within the canvas. As you move them, they will overlap, creating new colors in the intersection areas.
+
+Step 3: Observe the Mixing
+- In Additive Mode: Watch how Red, Green, and Blue light combine to create brighter colors like Yellow, Cyan, and Magenta.
+- In Subtractive Mode: Watch how Cyan, Magenta, and Yellow pigments combine to create darker colors like Green, Blue, and Red.
+
+Step 4: Check the Center Color
+The "Center: #XXXXXX" display at the bottom shows the exact hex code of the color formed where all three circles overlap.
+
+Step 5: Read the Applications
+Scroll down to see real-world examples of where each color model is used (e.g., digital screens vs. physical printing).
+
+---
+
+2. TECHNICAL IMPLEMENTATION (CODE-BY-CODE)
+------------------------------------------
+
+A. The Visual Engine (CSS Blending)
+The core "magic" of the mixing is handled by the CSS property `mix-blend-mode`.
+- Additive Mixing: Uses `mix-blend-mode: screen`. This mathematically adds the color values of overlapping elements, simulating how light sources combine to become brighter.
+- Subtractive Mixing: Uses `mix-blend-mode: multiply`. This mathematically multiplies the color values, simulating how pigments absorb (subtract) light to become darker.
+
+B. The Interaction Logic (JavaScript Dragging)
+The dragging functionality is built using SVG coordinate mapping:
+1. Event Listeners: The script listens for `mousedown` (or `touchstart`) on the circles.
+2. Coordinate Mapping: It uses `getScreenCTM()` to convert the mouse's screen position into the SVG's internal 0-100 coordinate system.
+3. Real-time Updates: As you move the mouse, the circle's `cx` and `cy` attributes are updated instantly.
+
+C. The Color Math (JavaScript Calculations)
+While the browser handles the visual blending, the script manually calculates the "Center Color" for the text display:
+- Additive Math: It sums the RGB values of the three primary colors, capping each at 255.
+- Subtractive Math: It converts the RGB values to CMY (Cyan, Magenta, Yellow), sums the absorption values, and then converts back to RGB for display.
+
+D. Dynamic UI (Mode Switching)
+When you click a toggle button:
+1. The `body` class changes (triggering CSS theme changes).
+2. The SVG circles are assigned new primary colors (RGB for light, CMY for pigment).
+3. The `updatePalette()` function regenerates the visual swatch list at the top.
+4. The description cards are toggled using CSS `display: block/none`.
+
+---
+
+3. FILE STRUCTURE
+-----------------
+- index.html: The structural skeleton and SVG canvas.
+- style.css: The visual themes, blending modes, and animations.
+- script.js: The interaction logic, dragging math, and color calculations.
+- instructions.txt: This guide.
+
+To run the project, ensure all files are in the same directory and open index.html in any modern web browser
